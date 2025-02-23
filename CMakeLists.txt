@@ -38,7 +38,8 @@ pico_sdk_init()
 add_executable(TAREFA-U7C1 TAREFA-U7C1.c 
 libs/src/temperature_humidity.c 
 libs/src/actuators.c
-libs/src/ssd1306.c)
+libs/src/ssd1306.c
+libs/src/display_draw.c)
 
 pico_set_program_name(TAREFA-U7C1 "TAREFA-U7C1")
 pico_set_program_version(TAREFA-U7C1 "0.1")
