@@ -35,18 +35,23 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(TAREFA-U7C1 TAREFA-U7C1.c )
+add_executable(TAREFA-U7C1 TAREFA-U7C1.c 
+libs/src/temperature_humidity.c 
+libs/src/actuators.c
+libs/src/ssd1306.c)
 
 pico_set_program_name(TAREFA-U7C1 "TAREFA-U7C1")
 pico_set_program_version(TAREFA-U7C1 "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(TAREFA-U7C1 0)
-pico_enable_stdio_usb(TAREFA-U7C1 0)
+pico_enable_stdio_uart(TAREFA-U7C1 1)
+pico_enable_stdio_usb(TAREFA-U7C1 1)
 
 # Add the standard library to the build
 target_link_libraries(TAREFA-U7C1
-        pico_stdlib)
+        pico_stdlib
+        hardware_adc
+        hardware_i2c)
 
 # Add the standard include files to the build
 target_include_directories(TAREFA-U7C1 PRIVATE
