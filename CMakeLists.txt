@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(TAREFA-U7C1 TAREFA-U7C1.c )
+add_executable(TAREFA-U7C1 TAREFA-U7C1.c libs/src/temperature_humidity.c libs/src/actuators.c )
 
 pico_set_program_name(TAREFA-U7C1 "TAREFA-U7C1")
 pico_set_program_version(TAREFA-U7C1 "0.1")
