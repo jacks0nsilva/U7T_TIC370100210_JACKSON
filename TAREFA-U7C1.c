@@ -54,11 +54,13 @@ int main()
         } else{
             int humidity_a = check_humidity_a(vrx);
             actuators_humidity_a(humidity_a);
-            printf("Umidade A: %d\n", humidity_a);
+           // printf("Umidade A: %d\n", humidity_a);
 
             int humidity_b = check_humidity_b(vry);
             actuators_humidity_b(humidity_b);
-            printf("Umidade B: %d\n", humidity_b);
+            //printf("Umidade B: %d\n", humidity_b);
+
+            printf("Vrx: %d | Vry: %d\n", vrx, vry);
         }
 
 

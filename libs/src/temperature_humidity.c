@@ -4,11 +4,15 @@
 
 // Inicializa a temperatura com 30
 int temperature_a = 30;
+int vrx_upper = 2300;
+int vrx_lower = 2000;
+int vry_upper = 2200;
+int vry_lower = 1900;
 
 int check_temperature_a(uint16_t vrx) {
-    if(vrx > 2047){
+    if(vrx > vrx_upper){
         temperature_a++;
-    } else if(vrx < 2047){
+    } else if(vrx < vrx_lower){
         temperature_a--;
     }
     return temperature_a;
@@ -17,9 +21,9 @@ int check_temperature_a(uint16_t vrx) {
 // Inicializa a temperatura com 22
 int temperature = 22;
 int check_temperature_b(uint16_t vry) {
-    if(vry > 2047){
+    if(vry > vry_upper){
         temperature++;
-    } else if(vry < 2047){
+    } else if(vry < vry_lower){
         temperature--;
     }
     return temperature;
@@ -30,11 +34,11 @@ int humidity_a = 50;
 
 int check_humidity_a(uint16_t vrx) {
     // Se o valor for maior que o limiar, aumenta a umidade
-    if(vrx > 2047) {
+    if(vrx > vrx_upper) {
         humidity_a++;
     }
     // Se o valor for menor que o limiar, diminui a umidade
-    else if(vrx < 2047) {
+    else if(vrx < vrx_lower) {
         humidity_a--;
     }
     return humidity_a;
@@ -44,11 +48,11 @@ int check_humidity_a(uint16_t vrx) {
 int humidity_b = 50;
 int check_humidity_b(uint16_t vry) {
     // Se o valor for maior que o limiar, aumenta a umidade
-    if(vry > 2047) {
+    if(vry > vry_upper) {
         humidity_b++;
     }
     // Se o valor for menor que o limiar, diminui a umidade
-    else if(vry < 2047) {
+    else if(vry < vry_lower) {
         humidity_b--;
     }
     return humidity_b;
