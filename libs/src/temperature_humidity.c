@@ -29,8 +29,8 @@ int check_temperature_b(uint16_t vry) {
     return temperature;
 }
 
-// Inicializa a umidade em 50%
-int humidity_a = 50;
+// Inicializa a umidade em 52%
+int humidity_a = 52;
 
 int check_humidity_a(uint16_t vrx) {
     // Se o valor for maior que o limiar, aumenta a umidade
@@ -45,7 +45,7 @@ int check_humidity_a(uint16_t vrx) {
 }
 
 
-int humidity_b = 50;
+int humidity_b = 52;
 int check_humidity_b(uint16_t vry) {
     // Se o valor for maior que o limiar, aumenta a umidade
     if(vry > vry_upper) {
