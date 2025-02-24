@@ -39,10 +39,14 @@ add_executable(TAREFA-U7C1 TAREFA-U7C1.c
 libs/src/temperature_humidity.c 
 libs/src/actuators.c
 libs/src/ssd1306.c
-libs/src/display_draw.c)
+libs/src/display_draw.c
+libs/src/pioconfig.c)
 
 pico_set_program_name(TAREFA-U7C1 "TAREFA-U7C1")
 pico_set_program_version(TAREFA-U7C1 "0.1")
+
+# Generate PIO header
+pico_generate_pio_header(TAREFA-U7C1 ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
 
 # Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(TAREFA-U7C1 1)
@@ -50,6 +54,7 @@ pico_enable_stdio_usb(TAREFA-U7C1 1)
 
 # Add the standard library to the build
 target_link_libraries(TAREFA-U7C1
+        hardware_pio
         pico_stdlib
         hardware_adc
         hardware_i2c)

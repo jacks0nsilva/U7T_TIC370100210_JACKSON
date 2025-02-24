@@ -6,6 +6,7 @@
 
 ssd1306_t ssd;
 
+// Inicializa o display
 void initialize_display(){
     i2c_init(I2C_PORT, 400 * 1000);
     gpio_set_function(I2C_SDA,  GPIO_FUNC_I2C); // SDA
@@ -18,6 +19,7 @@ void initialize_display(){
     ssd1306_send_data(&ssd);
 }
 
+// Desenha linhas verticais e horizontais
 void draw_lines(char *text){
     ssd1306_draw_string(&ssd, text, 8, 0);
     ssd1306_hline(&ssd, 0,127, 15, true);
@@ -26,6 +28,7 @@ void draw_lines(char *text){
     ssd1306_send_data(&ssd);
 }
 
+// Desenha a umidade da ala A
 void draw_humidity_a(int humidity_a){
     char humidity_a_value[6];
     snprintf(humidity_a_value, 6, "%d", humidity_a);
@@ -35,6 +38,7 @@ void draw_humidity_a(int humidity_a){
     ssd1306_send_data(&ssd);
 }
 
+// Desenha a umidade da ala B
 void draw_humidity_b(int humidity_b){
     char humidity_b_value[6];
     snprintf(humidity_b_value, 6, "%d", humidity_b);
@@ -44,6 +48,7 @@ void draw_humidity_b(int humidity_b){
     ssd1306_send_data(&ssd);
 }
 
+// Desenha a temperatura da ala A
 void draw_temperature_a(int temperature_a){
     char temperature_a_value[6];
     snprintf(temperature_a_value, 6, "%d", temperature_a);
@@ -53,6 +58,7 @@ void draw_temperature_a(int temperature_a){
     ssd1306_send_data(&ssd);
 }
 
+// Desenha a temperatura da ala B
 void draw_temperature_b(int temperature_b){
     char temperature_b_value[6];
     snprintf(temperature_b_value, 6, "%d", temperature_b);

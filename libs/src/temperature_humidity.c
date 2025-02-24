@@ -2,12 +2,12 @@
 #include "pico/stdlib.h"
 #include "libs/include/temperature_humidity.h"
 
-// Inicializa a temperatura com 30
-int temperature_a = 30;
-int vrx_upper = 2300;
-int vrx_lower = 2000;
-int vry_upper = 2200;
-int vry_lower = 1900;
+
+int temperature_a = 30; // Inicializa a temperatura com 30
+int vrx_upper = 2300; // Define o valor do eixo X para iniciar o incremento 
+int vrx_lower = 2000; // Define o valor do eixo X para iniciar o decremento 
+int vry_upper = 2200; // Define o valor do eixo Y para iniciar o incremento 
+int vry_lower = 1900; // Define o valor do eixo Y para iniciar o decremento
 
 int check_temperature_a(uint16_t vrx) {
     if(vrx > vrx_upper){
