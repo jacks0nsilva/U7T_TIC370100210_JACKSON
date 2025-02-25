@@ -6,38 +6,39 @@
 #include "libs/include/ssd1306.h"
 #include "libs/include/display_draw.h"
 #include "libs/include/definicoes.h"
+#include "libs/include/pioconfig.h"
 
 bool button_pressed = false;
 static volatile uint32_t last_time = 0;
 
 void initialize_gpio(int pin, bool direction); // Declaração da função de inicialização do pino
-static void gpio_irq_handler(uint gpio, uint32_t events);
+static void gpio_irq_handler(uint gpio, uint32_t events); // Declaração da função de tratamento de interrupção do botão
 
 int main()
 {
     stdio_init_all();
 
-    adc_init();
+    // Inicializa o joystick
+    adc_init(); 
     adc_gpio_init(VRX_PIN);
     adc_gpio_init(VRY_PIN);
 
-    initialize_gpio(LED_RED, GPIO_OUT);
-    initialize_gpio(LED_BLUE, GPIO_OUT);
-    initialize_gpio(LED_GREEN, GPIO_OUT);
-    initialize_gpio(BUTTON_A, GPIO_IN);
+    initialize_gpio(BUTTON_A, GPIO_IN); // Inicializa o botão
 
-    initialize_display();
+    initialize_display(); // Inicializa o display
 
-    gpio_set_irq_enabled_with_callback(BUTTON_A, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
+    gpio_set_irq_enabled_with_callback(BUTTON_A, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler); // Configura a interrupção do botão
+    npInit(MATRIZ_LEDS); // Inicializa o pino da matriz de LEDs
+
 
     while (true) {
         
-        // Sensor de temperatura da ala A
+        // Lê o eixo X do joystick
         adc_select_input(1);
         uint16_t vrx = adc_read();
         sleep_ms(100);
 
-
+        // Lê o eixo Y do joystick
         adc_select_input(0);
         uint16_t vry = adc_read();
         sleep_ms(100);
@@ -70,11 +71,10 @@ int main()
             draw_humidity_b(humidity_b);
         }
         sleep_ms(100); // Pausa para evitar sobrecarga do processador
-        //printf("Temperatura A: %d | VRX: %d | \t Temperatura: B %d \n", temperature_a, vrx, temperature_b);
-        //printf("Posição x: %d | Posição y: %d\n", vrx, vry);
     }
 }
 
+// Função de inicialização do gpio
 void initialize_gpio(int pin, bool direction) {
     gpio_init(pin);
     gpio_set_dir(pin, direction);
@@ -85,13 +85,11 @@ void initialize_gpio(int pin, bool direction) {
     }
 }
 
+// Função de tratamento de interrupção do botão
 static void gpio_irq_handler(uint gpio, uint32_t events) {
     uint32_t current_time = to_us_since_boot(get_absolute_time());
     if(current_time - last_time > 200000){
         last_time = current_time;
         button_pressed = !button_pressed;
-        gpio_put(LED_RED, 0);
-        gpio_put(LED_GREEN, 0);
-        gpio_put(LED_BLUE, 0);
     }
 }

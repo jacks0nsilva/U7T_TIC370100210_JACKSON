@@ -2,13 +2,15 @@
 #include "pico/stdlib.h"
 #include "libs/include/temperature_humidity.h"
 
-// Inicializa a temperatura com 30
-int temperature_a = 30;
-int vrx_upper = 2300;
-int vrx_lower = 2000;
-int vry_upper = 2200;
-int vry_lower = 1900;
 
+
+int vrx_upper = 2300; // Define o valor do eixo X para iniciar o incremento 
+int vrx_lower = 2000; // Define o valor do eixo X para iniciar o decremento 
+int vry_upper = 2200; // Define o valor do eixo Y para iniciar o incremento 
+int vry_lower = 1900; // Define o valor do eixo Y para iniciar o decremento
+
+int temperature_a = 30; // Inicializa a temperatura com 30C
+// Função para definir a temperatura do setor A
 int check_temperature_a(uint16_t vrx) {
     if(vrx > vrx_upper){
         temperature_a++;
@@ -18,8 +20,9 @@ int check_temperature_a(uint16_t vrx) {
     return temperature_a;
 }
 
-// Inicializa a temperatura com 22
-int temperature = 22;
+
+int temperature = 22; // Inicializa a temperatura com 22C
+// Função para definir a temperatura do setor B
 int check_temperature_b(uint16_t vry) {
     if(vry > vry_upper){
         temperature++;
@@ -29,9 +32,9 @@ int check_temperature_b(uint16_t vry) {
     return temperature;
 }
 
-// Inicializa a umidade em 52%
-int humidity_a = 52;
 
+int humidity_a = 52; // Inicializa a umidade em 52%
+// Função para definir a umidade do setor A
 int check_humidity_a(uint16_t vrx) {
     // Se o valor for maior que o limiar, aumenta a umidade
     if(vrx > vrx_upper) {
@@ -45,7 +48,8 @@ int check_humidity_a(uint16_t vrx) {
 }
 
 
-int humidity_b = 52;
+int humidity_b = 52; // Inicializa a umidade em 52%
+// Função para definir a umidade do setor B
 int check_humidity_b(uint16_t vry) {
     // Se o valor for maior que o limiar, aumenta a umidade
     if(vry > vry_upper) {
