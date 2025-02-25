@@ -6,24 +6,24 @@
 
 // Função que liga e desliga os atuadores do setor A de acordo com a temperatura
 void actuators_temperature_a(int temperature_a) {
-    // Se a temperatura for menor que 29, ligam as lâmpadas
+    // Se a temperatura for menor que 29, ligam as campânulas 
     if(temperature_a < 29){
-        npSetLED(24,200,0,0); // Liga as lâmpadas
+        npSetLED(24,200,0,0); // Liga as campânulas 
         npWrite();
     } else if(temperature_a > 33){ // Se a temperatura for maior que 33, ligam os ventiladores
         npSetLED(15,0,0,200); // Liga os ventiladores
         npWrite();
     } else { // Temperatura ideal, desliga tudo
         int leds[2] = {24,15};
-        npSetManyLEDs(leds, 2, 0,0,0); // Mantém os ventiladores e lâmpadas desligados
+        npSetManyLEDs(leds, 2, 0,0,0); // Mantém os ventiladores e campânulas  desligados
         npWrite();
     }
 }
 
 // Função que liga e desliga os atuadores do setor B de acordo com a temperatura
 void actuators_temperature_b(int temperature_b) {
-    // Se a temperatura for maior que 23, ligam os ventiladores
-    if(temperature_b > 23){
+    // Se a temperatura for maior que 28, ligam os ventiladores
+    if(temperature_b > 28){
         npSetLED(20,200,0,0);  // Liga os ventiladores
         npWrite();
     } else { // Temperatura ideal, desliga tudo
