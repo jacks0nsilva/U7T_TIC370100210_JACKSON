@@ -21,7 +21,7 @@ void initialize_display(){
 
 // Desenha linhas verticais e horizontais
 void draw_lines(char *text){
-    ssd1306_draw_string(&ssd, text, 8, 0);
+    ssd1306_draw_string(&ssd, text, 48, 0);
     ssd1306_hline(&ssd, 0,127, 15, true);
     ssd1306_hline(&ssd, 0,127, 26, true);
     ssd1306_vline(&ssd, 64, 15, 63, true);
@@ -32,9 +32,9 @@ void draw_lines(char *text){
 void draw_humidity_a(int humidity_a){
     char humidity_a_value[6];
     snprintf(humidity_a_value, 6, "%d", humidity_a);
-    ssd1306_draw_string(&ssd, "ALA A", 8, 17);
-    ssd1306_draw_string(&ssd, humidity_a_value, 20, 36);
-    ssd1306_draw_char(&ssd, '%', 37, 36);
+    ssd1306_draw_string(&ssd, "UMIDADE", 71, 17);
+    ssd1306_draw_string(&ssd, humidity_a_value, 80, 36);
+    ssd1306_draw_char(&ssd, '%', 98, 36);
     ssd1306_send_data(&ssd);
 }
 
@@ -42,7 +42,7 @@ void draw_humidity_a(int humidity_a){
 void draw_humidity_b(int humidity_b){
     char humidity_b_value[6];
     snprintf(humidity_b_value, 6, "%d", humidity_b);
-    ssd1306_draw_string(&ssd, "ALA B", 71, 17);
+    ssd1306_draw_string(&ssd, "UMIDADE", 71, 17);
     ssd1306_draw_string(&ssd, humidity_b_value, 80, 36);
     ssd1306_draw_char(&ssd, '%', 98, 36);
     ssd1306_send_data(&ssd);
@@ -52,7 +52,7 @@ void draw_humidity_b(int humidity_b){
 void draw_temperature_a(int temperature_a){
     char temperature_a_value[6];
     snprintf(temperature_a_value, 6, "%d", temperature_a);
-    ssd1306_draw_string(&ssd, "ALA A", 8, 17);
+    ssd1306_draw_string(&ssd, "TEMPER", 8, 17);
     ssd1306_draw_string(&ssd, temperature_a_value, 20, 36);
     ssd1306_draw_char(&ssd, 'C', 37, 36);
     ssd1306_send_data(&ssd);
@@ -62,9 +62,9 @@ void draw_temperature_a(int temperature_a){
 void draw_temperature_b(int temperature_b){
     char temperature_b_value[6];
     snprintf(temperature_b_value, 6, "%d", temperature_b);
-    ssd1306_draw_string(&ssd, "ALA B", 71, 17);
-    ssd1306_draw_string(&ssd, temperature_b_value, 80, 36);
-    ssd1306_draw_char(&ssd, 'C', 98, 36);
+    ssd1306_draw_string(&ssd, "TEMPER", 8, 17);
+    ssd1306_draw_string(&ssd, temperature_b_value, 20, 36);
+    ssd1306_draw_char(&ssd, 'C', 37, 36);
     ssd1306_send_data(&ssd);
 }
 

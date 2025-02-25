@@ -4,10 +4,11 @@
 
 
 
-int vrx_upper = 2300; // Define o valor do eixo X para iniciar o incremento 
-int vrx_lower = 2000; // Define o valor do eixo X para iniciar o decremento 
-int vry_upper = 2200; // Define o valor do eixo Y para iniciar o incremento 
-int vry_lower = 1900; // Define o valor do eixo Y para iniciar o decremento
+int vrx_upper = 4000; // Define o valor do eixo X para iniciar o incremento 
+int vrx_lower = 100; // Define o valor do eixo X para iniciar o decremento 
+int vry_upper = 4000; // Define o valor do eixo Y para iniciar o incremento 
+int vry_lower = 100; // Define o valor do eixo Y para iniciar o decremento
+
 
 int temperature_a = 30; // Inicializa a temperatura com 30C
 // Função para definir a temperatura do setor A

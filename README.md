@@ -30,19 +30,21 @@ Projeto final do programa EmbarcaTech, desenvolvido para fins avaliativos da fas
 
 ## Sensores e Atuadores 🔌
 
-- **Sensores de Temperatura:**
+- **Sensor DHT11 (Temperatura e Umidade):**
 
-  - Eixo X do Joystick: Simula o sensor de temperatura na ala A.
-  - Eixo Y do Joystick: Simula o sensor de temperatura na ala B.
+- **ALA A**
 
-- **Sensores de Umidade:**
+  - Eixo X do Joystick: Simula a temperatura.
+  - Eixo Y do Joystick: Simula a de umidade.
 
-  - Eixo X do Joystick: Simula o sensor de umidade na ala A.
-  - Eixo Y do Joystick: Simula o sensor de umidade na ala B.
+- **ALA B**
 
-    - **Sensor DHT11 (Temperatura e Umidade):**
+  - Eixo X do Joystick: Simula a temperatura.
+  - Eixo Y do Joystick: Simula a umidade.
 
 - **Atuadores:**
+
+  - **Relés 5V**
 
 - Campânulas ala A (LED vermelho 24): Ligadas quando a temperatura da ala A é menor que 29 °C.
 - Ventiladores ala A (LED azul 15): Ligados quando a temperatura da ala A é maior que 33 °C.
@@ -54,7 +56,6 @@ Projeto final do programa EmbarcaTech, desenvolvido para fins avaliativos da fas
 - Exaustores ala A (LED azul 4): Ligados quando a umidade da ala A é maior que 70%.
 - Nebulizadores ala B (LED vermelho 9): Ligados quando a umidade da ala B é menor que 50%.
 - Exaustores ala B (LED azul 0): Ligados quando a umidade da ala B é maior que 70%.
-  - **Relés 5V:**
 
 ![img/componentesconectados.jpg](img/matriz.jpg)
 

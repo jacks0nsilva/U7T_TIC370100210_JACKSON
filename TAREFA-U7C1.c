@@ -8,7 +8,7 @@
 #include "libs/include/definicoes.h"
 #include "libs/include/pioconfig.h"
 
-bool button_pressed = false;
+bool button_pressed = true; 
 static volatile uint32_t last_time = 0;
 
 void initialize_gpio(int pin, bool direction); // Declaração da função de inicialização do pino
@@ -30,41 +30,32 @@ int main()
     gpio_set_irq_enabled_with_callback(BUTTON_A, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler); // Configura a interrupção do botão
     npInit(MATRIZ_LEDS); // Inicializa o pino da matriz de LEDs
 
-
     while (true) {
         
         // Lê o eixo X do joystick
         adc_select_input(1);
         uint16_t vrx = adc_read();
-        sleep_ms(100);
+        sleep_ms(50);
 
         // Lê o eixo Y do joystick
         adc_select_input(0);
         uint16_t vry = adc_read();
-        sleep_ms(100);
+        sleep_ms(50);
         
-
         if(!button_pressed){
-            draw_lines("NIVEL TEMP");
-
+            draw_lines("ALA A");
             int temperature_a = check_temperature_a(vrx);
-            // Se a temperatura for menor que 29, liga a lampada
-            // Se a temperatura for maior que 33, liga o ventilador
             actuators_temperature_a(temperature_a);
             draw_temperature_a(temperature_a);
 
-
-            int temperature_b = check_temperature_b(vry);
-            actuators_temperature_b(temperature_b);
-
-            draw_temperature_b(temperature_b);
-        } else{
-            draw_lines("NIVEL UMIDADE");
-
-            int humidity_a = check_humidity_a(vrx);
+            int humidity_a = check_humidity_a(vry);
             actuators_humidity_a(humidity_a);
             draw_humidity_a(humidity_a);
- 
+        } else{
+            draw_lines("ALA B");
+            int temperature_b = check_temperature_b(vrx);
+            actuators_temperature_b(temperature_b);
+            draw_temperature_b(temperature_b);
 
             int humidity_b = check_humidity_b(vry);
             actuators_humidity_b(humidity_b);
