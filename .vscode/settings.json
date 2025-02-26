@@ -41,6 +41,7 @@
     "stdio.h": "c",
     "stdlib.h": "c",
     "ssd1306.h": "c",
-    "actuators.h": "c"
+    "actuators.h": "c",
+    "temperature_humidity.h": "c"
   }
 }

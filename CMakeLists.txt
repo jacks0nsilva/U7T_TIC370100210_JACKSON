@@ -54,7 +54,8 @@ target_link_libraries(TAREFA-U7C1
         hardware_pio
         pico_stdlib
         hardware_adc
-        hardware_i2c)
+        hardware_i2c
+        hardware_timer)
 
 # Add the standard include files to the build
 target_include_directories(TAREFA-U7C1 PRIVATE

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/adc.h"
+#include "hardware/timer.h"
 #include "libs/include/temperature_humidity.h"
 #include "libs/include/actuators.h"
 #include "libs/include/ssd1306.h"
