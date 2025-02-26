@@ -6,14 +6,16 @@
 #include "libs/include/ssd1306.h"
 #include "libs/include/display_draw.h"
 #include "libs/include/definicoes.h"
-#include "libs/include/pioconfig.h"
 
-bool button_pressed = true; 
+
+bool button_pressed = false; 
 static volatile uint32_t last_time = 0;
+int temp_a, temp_b, humi_a, humi_b;
+uint16_t vrx, vry;
 
 void initialize_gpio(int pin, bool direction); // Declaração da função de inicialização do pino
 static void gpio_irq_handler(uint gpio, uint32_t events); // Declaração da função de tratamento de interrupção do botão
-
+bool repeating_timer_callback(struct repeating_timer *timer); // Declaração da função de callback do timer
 int main()
 {
     stdio_init_all();
@@ -24,43 +26,27 @@ int main()
     adc_gpio_init(VRY_PIN);
 
     initialize_gpio(BUTTON_A, GPIO_IN); // Inicializa o botão
-
+    initialize_gpio(LED_RED, GPIO_OUT); // Inicializa o LED
+    initialize_gpio(LED_BLUE, GPIO_OUT); // Inicializa o LED
     initialize_display(); // Inicializa o display
 
     gpio_set_irq_enabled_with_callback(BUTTON_A, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler); // Configura a interrupção do botão
-    npInit(MATRIZ_LEDS); // Inicializa o pino da matriz de LEDs
+
+    struct repeating_timer timer;
+    add_repeating_timer_ms(3000, repeating_timer_callback, NULL, &timer);
 
     while (true) {
         
-        // Lê o eixo X do joystick
+        // Lê o eixo X do joystick (sensor de temperatura)
         adc_select_input(1);
-        uint16_t vrx = adc_read();
+        vrx = adc_read();
         sleep_ms(50);
 
-        // Lê o eixo Y do joystick
+        // Lê o eixo Y do joystick (sensor de umidade)
         adc_select_input(0);
-        uint16_t vry = adc_read();
+        vry = adc_read();
         sleep_ms(50);
         
-        if(!button_pressed){
-            draw_lines("ALA A");
-            int temperature_a = check_temperature_a(vrx);
-            actuators_temperature_a(temperature_a);
-            draw_temperature_a(temperature_a);
-
-            int humidity_a = check_humidity_a(vry);
-            actuators_humidity_a(humidity_a);
-            draw_humidity_a(humidity_a);
-        } else{
-            draw_lines("ALA B");
-            int temperature_b = check_temperature_b(vrx);
-            actuators_temperature_b(temperature_b);
-            draw_temperature_b(temperature_b);
-
-            int humidity_b = check_humidity_b(vry);
-            actuators_humidity_b(humidity_b);
-            draw_humidity_b(humidity_b);
-        }
         sleep_ms(100); // Pausa para evitar sobrecarga do processador
     }
 }
@@ -82,5 +68,29 @@ static void gpio_irq_handler(uint gpio, uint32_t events) {
     if(current_time - last_time > 200000){
         last_time = current_time;
         button_pressed = !button_pressed;
+        gpio_put(LED_RED, 0);
+        gpio_put(LED_BLUE, 0);
     }
+}
+
+bool repeating_timer_callback(struct repeating_timer *timer){
+
+    if(!button_pressed){
+        temp_a = check_temperature_a(vrx);
+        humi_a = check_humidity_a(vry);
+        draw_lines("ALA A");
+        draw_temperature_a(temp_a);
+        draw_humidity_a(humi_a);
+        actuators_temperature_a(temp_a);
+        actuators_humidity_a(humi_a);
+    } else{
+        draw_lines("ALA B");
+        temp_b = check_temperature_b(vrx);
+        draw_temperature_b(temp_b);
+        humi_b = check_humidity_b(vry);
+        draw_humidity_b(humi_b);
+        actuators_temperature_b(temp_b);
+        actuators_humidity_b(humi_b);
+    }
+    return true;
 }

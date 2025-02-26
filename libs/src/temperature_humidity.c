@@ -14,51 +14,51 @@ int temperature_a = 30; // Inicializa a temperatura com 30C
 // Função para definir a temperatura do setor A
 int check_temperature_a(uint16_t vrx) {
     if(vrx > vrx_upper){
-        temperature_a++;
+        temperature_a += 4;
     } else if(vrx < vrx_lower){
-        temperature_a--;
+        temperature_a -= 4;
     }
     return temperature_a;
 }
 
 
-int temperature = 22; // Inicializa a temperatura com 22C
+int temperature = 24; // Inicializa a temperatura com 24C
 // Função para definir a temperatura do setor B
 int check_temperature_b(uint16_t vry) {
     if(vry > vry_upper){
-        temperature++;
+        temperature+= 6;
     } else if(vry < vry_lower){
-        temperature--;
+        temperature-= 6;
     }
     return temperature;
 }
 
 
-int humidity_a = 52; // Inicializa a umidade em 52%
+int humidity_a = 60; // Inicializa a umidade em 60%
 // Função para definir a umidade do setor A
 int check_humidity_a(uint16_t vrx) {
     // Se o valor for maior que o limiar, aumenta a umidade
     if(vrx > vrx_upper) {
-        humidity_a++;
+        humidity_a += 10;
     }
     // Se o valor for menor que o limiar, diminui a umidade
     else if(vrx < vrx_lower) {
-        humidity_a--;
+        humidity_a -= 10;
     }
     return humidity_a;
 }
 
 
-int humidity_b = 52; // Inicializa a umidade em 52%
+int humidity_b = 60; // Inicializa a umidade em 60%
 // Função para definir a umidade do setor B
 int check_humidity_b(uint16_t vry) {
     // Se o valor for maior que o limiar, aumenta a umidade
     if(vry > vry_upper) {
-        humidity_b++;
+        humidity_b += 10;
     }
     // Se o valor for menor que o limiar, diminui a umidade
     else if(vry < vry_lower) {
-        humidity_b--;
+        humidity_b -= 10;
     }
     return humidity_b;
 }
