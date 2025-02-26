@@ -17,16 +17,16 @@ Projeto final do programa EmbarcaTech, desenvolvido para fins avaliativos da fas
 
 - **Controle de Atuadores:**
 
-  - No modo de temperatura:
+  - Temperatura:
     - Se a temperatura da ala A for menor que 29 °C, liga campânulas .
     - Se a temperatura da ala A for maior que 33 °C, aciona os ventiladores.
     - Para a ala B, se a temperatura ultrapassar 28 °C, ligam os ventiladores.
-  - No modo de umidade:
+  - Umidade:
     - Se a umidade da ala A ou B for menor que 50%, liga os nebulizadores.
     - Se a umidade da ala A ou B for maior que 70%, aciona os exaustores.
 
 - **Alternância de Modos:**
-  - Um botão (BUTTON_A) permite alternar entre o modo de monitoramento de temperatura e o modo de monitoramento de umidade através de uma interrupção no GPIO.
+  - Um botão (BUTTON_A) permite alternar entre as informações da ala A e da ala B.
 
 ## Sensores e Atuadores 🔌
 
@@ -46,18 +46,16 @@ Projeto final do programa EmbarcaTech, desenvolvido para fins avaliativos da fas
 
   - **Relés 5V**
 
-- Campânulas ala A (LED vermelho 24): Ligadas quando a temperatura da ala A é menor que 29 °C.
-- Ventiladores ala A (LED azul 15): Ligados quando a temperatura da ala A é maior que 33 °C.
-- Ventiladores ala B (LED vermelho 20): Ligados quando a temperatura da ala B é maior que 28 °C.
+- Campânulas ala A (LED vermelho): Ligadas quando a temperatura da ala A é menor que 29 °C.
+- Ventiladores ala A (LED vermelho): Ligados quando a temperatura da ala A é maior que 33 °C.
+- Ventiladores ala B (LED vermelho): Ligados quando a temperatura da ala B é maior que 28 °C.
 
 ---
 
-- Nebulizadores ala A (LED vermelho 5): Ligados quando a umidade da ala A é menor que 50%.
-- Exaustores ala A (LED azul 4): Ligados quando a umidade da ala A é maior que 70%.
-- Nebulizadores ala B (LED vermelho 9): Ligados quando a umidade da ala B é menor que 50%.
-- Exaustores ala B (LED azul 0): Ligados quando a umidade da ala B é maior que 70%.
-
-![img/componentesconectados.jpg](img/matriz.jpg)
+- Nebulizadores ala A (LED azul): Ligados quando a umidade da ala A é menor que 50%.
+- Exaustores ala A (LED azul): Ligados quando a umidade da ala A é maior que 70%.
+- Nebulizadores ala B (LED azul): Ligados quando a umidade da ala B é menor que 50%.
+- Exaustores ala B (LED azul): Ligados quando a umidade da ala B é maior que 70%.
 
 ## Estrutura do Projeto
 
@@ -69,9 +67,6 @@ Projeto final do programa EmbarcaTech, desenvolvido para fins avaliativos da fas
 
 - **libs/src/actuators.c:**  
   Lógica de controle dos atuadores. Aciona dispositivos (lâmpadas, ventiladores, nebulizadores e exaustores) com base nos intervalos de temperatura e umidade predefinidos para os setores A e B.
-
-- **libs/src/pioconfig.c:**
-  Funções para inicializar a máquina de estado que controla a matriz de LEDs 5x5.
 
 - **libs/src/ssd1306.c:**
   Funções para inicializar e controlar o display OLED SSD1306 e exibir informações no display.

@@ -33,7 +33,7 @@ int main()
     gpio_set_irq_enabled_with_callback(BUTTON_A, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler); // Configura a interrupção do botão
 
     struct repeating_timer timer;
-    add_repeating_timer_ms(3000, repeating_timer_callback, NULL, &timer);
+    add_repeating_timer_ms(3000, repeating_timer_callback, NULL, &timer); // Inicializa o timer com 3 segundos de intervalo (na prática seria 15 minutos)
 
     while (true) {
         
