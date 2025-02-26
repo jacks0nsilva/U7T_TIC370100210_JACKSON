@@ -6,7 +6,7 @@ Projeto final do programa EmbarcaTech, desenvolvido para fins avaliativos da fas
 
 ## Vídeo de apresentação 🎥
 
-[Vídeo de apresentação do projeto](video_link_)
+[Vídeo de apresentação do projeto](https://drive.google.com/file/d/1ZoszUOei1i8FSWWycd-oz2gaUlEOFu_B/view?usp=drive_link)
 
 ## Funcionalidades 🚀
 

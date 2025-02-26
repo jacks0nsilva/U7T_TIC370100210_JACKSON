@@ -1,4 +1,0 @@
-[wokwi]
-version = 1
-firmware = 'build/TAREFA-U7C1.uf2'
-elf = 'build/TAREFA-U7C1.elf'
